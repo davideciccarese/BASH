@@ -1,0 +1,159 @@
+#!/bin/bash
+#Welcome to useful bash command: the answer is 42.
+#Bash Command
+
+# This to change all files extention in another
+
+for file in *.tif; do 
+mv "$file" "`basename "$file" .tif`.jpg"
+done
+
+#To open a file
+
+open thisfile
+
+# TO RUN THE python SCRIPT FROM TERMINAL RIST:
+# chmod +x <filename>.py
+# THEN ./<filename>.py
+# OR TYPE: python 2D_diffusion.py
+
+
+#Find the USB DEVICE
+
+df -h
+
+#list the files in the local folder
+ls 
+
+#search a file
+
+mv *.jpg *.jpeg *.gif *.png ./this_folder
+
+#make a new directory
+
+mkdir nameofthedirectory
+
+
+#move file with a specific name. The * is whether you don’t want to specify the name
+
+mv *part_of_the_name_inside* ./actual_folder/
+
+#move file with a specific extentions
+
+mv *.tif ./this_folder/
+
+#CHANGE ALL THE FILE NAME IN ONE LINE COMMAND WITH SEQUENTIAL NAME
+
+ls | cat -n | while read n f; do mv "$f" "$n.extension"; done 
+
+#count file in actual folder
+
+ls -l | grep -v ^l | wc -l
+
+#count the file with a certain extentions
+
+ls -lR ./*.tif | wc -l
+
+# OR YOU CAN ALSO DO THIS
+
+find . -name "*.tif" | wc -l
+
+#count by type 
+
+find . -type f | sed 's/.*\.//' | sort | uniq -c
+
+
+#Sort file by time ls -t
+
+ls -t *.pdf
+
+#move a folder into another that is in the same main folder
+
+mv firstfolder ./secondfolder
+
+#changing part of the name of multiple file. For file in, define the part of the file name to remove.
+
+for file in part_of_thename *; do     mv "$file" "${file/part_of_thenam - /}"; done
+
+
+#count file using only part of the name
+
+ls -lR ./*part_of_the_name* | wc -l
+
+#count file with a defined extention
+
+ls -lR *.tif | wc -l
+
+#Copy folder structure (without files) from one location to another
+
+cd /path/to/directories
+find . -type d -exec mkdir -p -- /path/to/backup/{} \;
+
+#create multiple folder with multiple subfolder
+
+mkdir -p {MAIN1,MAIN2,MAIN3}/{SUB1,SUB2,SUB,3}
+
+#move all the file from all the sub folder to the parental folder. Be careful, the file with the same name might e overwritten https://askubuntu.com/questions/146634/shell-script-to-move-all-files-from-subfolders-to-parent-folder
+
+find . -mindepth 2 -type f -print -exec mv {} . \;
+
+#Rename all files in directory from $filename_h to $filename_half?
+
+for file in *.tif; do mv "$file" "${file/.tif/_T1.tif}"; done
+
+#make for each file a folder; https://unix.stackexchange.com/questions/219991/how-do-i-create-a-directory-for-every-file-in-a-parent-directory
+
+for x in ./*.tif; do
+  mkdir "${x%.*}" && mv "$x" "${x%.*}"
+done
+
+
+#RESIZE ALL THE PICTURE
+
+sips -Z 1000 *.jpg
+
+#CHANGE ALL THE FILE EXTENSION
+
+for file in *.tif; do mv "$file" "${file%.tif}.jpg"; done
+
+
+#MOVE ONLY FILE WITH A SPEFIC PART OF A NAME TO A PARENTAL FOLDER
+
+mv *this part of the name* ..
+
+# OPEN A NEW INSTANCE OF AN APPLICATION
+
+open -na nameApp.app
+
+# change a name to a file
+
+mv oldName newName
+
+
+#Write into a txt starting from the end of the file, without open it and without erasing the text. Every time you press enter you can write agin into a new line with the same command.
+
+echo “This is what you want to write” >> file.txt
+
+
+# Show me only folder
+ls -d */
+
+# open twt file in the terminal
+cat filename.txt
+
+# Copy file from onw folder to another
+
+cp /this/path/filename /to/this/path/
+
+# You can also copy file without the entire name just selecting part of the name that all the file have in common
+
+cp /this/path/*partOfTheFileName* /to/this/path/
+
+# to copy a directory
+
+cp -R /thispath/foldername /to/this/path/
+
+# open a file with an application 
+
+open -a “nameOfTheApp” /Users/ciccarda/thispath/filename
+
